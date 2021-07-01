@@ -9,11 +9,29 @@
 	</head>
 	<body>
 		<div class="container pt-5" id="app">
-			<div class="card center">
-				<h1>Счетчик: {{ counter }}</h1>
-				<div>
-					<button class="btn primary">Добавить</button>
-					<button class="btn danger">Вычесть</button>
+			<div class="card">
+				<h1>{{ title }}</h1>
+				<div class="form-control">
+					<input
+						type="text"
+						v-bind:placeholder="placeholderString"
+						v-bind:value="inputValue"
+						v-on:input="addInput"
+						v-on:keypress.enter="addNewNote"
+					/>
+				</div>
+				<button class="btn" v-on:click="addNewNote">Добавить</button>
+				<hr />
+				<ul class="list" v-if="notes.length !== 0">
+					<li class="list-item" v-for="(note, index) of notes">
+						{{note}}
+						<button class="btn danger" v-on:click="deleteNote(index)">
+							Удалить
+						</button>
+					</li>
+				</ul>
+				<div v-if="notes.length === 0">
+					Заметок пока нет. Добавьте первую :)
 				</div>
 			</div>
 		</div>
