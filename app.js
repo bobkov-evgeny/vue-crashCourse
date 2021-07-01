@@ -1,5 +1,6 @@
 "use strict";
 
+/*
 const App = {
 	data() {
 		return {
@@ -42,3 +43,27 @@ const App = {
 };
 
 Vue.createApp(App).mount("#app");
+*/
+
+Vue.createApp({
+	data: () => ({
+		title: "Я есть Грут",
+		myHtml: "<h1>Vue 3 App</h1>",
+		person: {
+			firstName: "Eugene",
+			lastName: "Bobkov",
+			age: 25,
+		},
+		items: [1, 2, 3],
+	}),
+	methods: {
+		addItem() {
+			this.items.unshift(this.$refs.myInput.value);
+		},
+	},
+	computed: {
+		evenItems() {
+			return this.items.filter((item) => item % 2 === 0);
+		},
+	},
+}).mount("#app");
